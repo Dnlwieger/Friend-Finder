@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <!-- JQUERY -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
+
+    </head>
+    <body>
+            <h1>Please choose from the criteria below as best pertains to you.  Honest answers have better results.  Good Luck!</h1>
+        <form action="" method="POST" role="form">
+           First Name: <input type="text" id="firstName">
+            <hr>
+           Last Name: <input type="text" id="lastName">
+            <hr>
+            Photo URL: <input type="text" id="photo">
+            <h2>Question 1:</h2>
+            <h3>You generally believe yourself to be a good person.</h3>
+            <select name="choose" id="q1">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 2:</h2>
+            <h3>You feel good about life most of the time.</h3>
+            <select name="choose" id="q2">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 3:</h2>
+            <h3>You'd rather stay at home instead of going to the gym.</h3>
+            <select name="choose" id="q3">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 4:</h2>
+            <h3>You would take something that doesn't belong to you if the other person deserved it.</h3>
+            <select name="choose" id="q4">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 5:</h2>
+            <h3>You enjoy reading more than team sports.</h3>
+            <select name="choose" id="q5">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 6:</h2>
+            <h3>You are okay with smoking tobacco.</h3>
+            <select name="choose" id="q6">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 7:</h2>
+            <h3>You are okay with recreational drug use.</h3>
+            <select name="choose" id="q7">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 8:</h2>
+            <h3>You are looking to settle down and have a family.</h3>
+            <select name="choose" id="q8">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 9:</h2>
+            <h3>You consider yourself highly involved in politics.</h3>
+            <select name="choose" id="q9">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            <h2>Question 10:</h2>
+            <h3>You are religious and finding someone who shares in your beliefs is important to you.</h3>
+            <select name="choose" id="q10">
+                <option value="5">5 Strongly Agree</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1 Strongly Disagree</option>
+            </select>
+            <br>
+            
+        </form>
+        <br><br>
+        <button id="submit" type="submit">Submit</button>
+        <hr>
+        <a href="/"><button type="button">Return to Home</button></a>
+        <br>
+
+       
+
+        <script type="text/javascript">
+
+
+       
+            $("#submit").on("click", function(){
+                console.log("clicked!");
+                var newFriend = {
+                    firstName: $("#firstName").val().trim(),
+                    lastName: $("#lastName").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    scores: [
+                    $("#q1").val().trim(),
+                    $("#q2").val().trim(),
+                    $("#q3").val().trim(),
+                    $("#q4").val().trim(),
+                    $("#q5").val().trim(),
+                    $("#q6").val().trim(),
+                    $("#q7").val().trim(),
+                    $("#q8").val().trim(),
+                    $("#q9").val().trim(),
+                    $("#q10").val().trim(),
+                ],
+                };
+
+                $.post("http://localhost:8080/api/friends", newFriend)
+                .done(function(data){
+                    console.log(data);
+                    
+                });
+                
+            });
+                    
+        </script>
+        
+    </body>
+</html>
